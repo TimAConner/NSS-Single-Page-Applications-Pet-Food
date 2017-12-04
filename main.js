@@ -1,0 +1,1 @@
+products.createTable("dog-food");
