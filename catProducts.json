@@ -1,10 +1,10 @@
 {
     "cat_products": [
       {
-        "name": "Chuck wagon",
+        "name": "Purrina",
         "types": [
           {
-            "type": "all_natural",
+            "type": "Siamese",
             "volumes": [
               {
                 "name": "32oz",
@@ -17,7 +17,33 @@
             ]
           },
           {
-            "type": "standard",
+            "type": "Bengal",
+            "volumes": [
+              {
+                "name": "58oz",
+                "price": 12.99
+              },
+              {
+                "name": "72oz",
+                "price": 21.99
+              }
+            ]
+          },
+          {
+            "type": "Showshoe",
+            "volumes": [
+              {
+                "name": "58oz",
+                "price": 12.99
+              },
+              {
+                "name": "72oz",
+                "price": 21.99
+              }
+            ]
+          },
+          {
+            "type": "Munchkin",
             "volumes": [
               {
                 "name": "58oz",
@@ -32,10 +58,10 @@
         ]
       },
       {
-        "name": "Purina",
+        "name": "Meow Meal",
         "types": [
           {
-            "type": "puppy",
+            "type": "manx",
             "volumes": [
               {
                 "name": "16oz",
@@ -48,7 +74,7 @@
             ]
           },
           {
-            "type": "standard",
+            "type": "Egyption Mau",
             "volumes": [
               {
                 "name": "58oz",
@@ -57,6 +83,32 @@
               {
                 "name": "72oz",
                 "price": 24.99
+              }
+            ]
+          },
+          {
+            "type": "Himalayan",
+            "volumes": [
+              {
+                "name": "58oz",
+                "price": 12.99
+              },
+              {
+                "name": "72oz",
+                "price": 21.99
+              }
+            ]
+          },
+          {
+            "type": "Rag Doll",
+            "volumes": [
+              {
+                "name": "58oz",
+                "price": 12.99
+              },
+              {
+                "name": "72oz",
+                "price": 21.99
               }
             ]
           }

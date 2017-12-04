@@ -1,91 +1,34 @@
 var products = (function(){
-    let dogFood = {
-        "dog_brands": 
-        [
-            {
-                "name": "Chuck wagon",
-                "types": [
-                {
-                    "type": "all_natural",
-                    "volumes": [
-                    {
-                        "name": "32oz",
-                        "price": 9.99
-                    },
-                    {
-                        "name": "64oz",
-                        "price": 17.99
-                    }
-                    ]
-                },
-                {
-                    "type": "standard",
-                    "volumes": [
-                    {
-                        "name": "58oz",
-                        "price": 12.99
-                    },
-                    {
-                        "name": "72oz",
-                        "price": 21.99
-                    }
-                    ]
-                }
-                ]
-            },
-            {
-                "name": "Purina",
-                "types": [
-                {
-                    "type": "puppy",
-                    "volumes": [
-                    {
-                        "name": "16oz",
-                        "price": 8.99
-                    },
-                    {
-                        "name": "24oz",
-                        "price": 14.99
-                    }
-                    ]
-                },
-                {
-                    "type": "standard",
-                    "volumes": [
-                    {
-                        "name": "58oz",
-                        "price": 19.99
-                    },
-                    {
-                        "name": "72oz",
-                        "price": 24.99
-                    }
-                    ]
-                }
-                ]
-            }
-        ]
-    };
+    let data;
     
+     // Creates a dom element and returns it
+    function createElement(element, text){
+        let domElement = document.createElement(element),
+        textNode = document.createTextNode(text);
+
+        domElement.appendChild(textNode);
+
+        return domElement;
+    }
+
     // Outputs table of products to outputDiv
-    function createTable(outputDiv){
+    function createTable(outputDiv, animal){
         let output = document.getElementById(outputDiv),
         tablePara = document.createElement("table"),
-        dogFoods = dogFood.dog_brands;
+        foodProducts = data[`${animal}_products`];
 
-        for(let brand = 0; brand < dogFoods.length; brand++){ // Loops through brands
+        for(let brand = 0; brand < foodProducts.length; brand++){ // Loops through brands
 
             let trBrand = document.createElement("tr");
-            trBrand.appendChild(createElement("td", dogFoods[brand].name));
+            trBrand.appendChild(createElement("td", foodProducts[brand].name));
             tablePara.appendChild(trBrand); // Adds brand row to table
 
-            for(let type = 0; type < dogFoods[brand].types.length; type++){ // Loop through type of food in brands
+            for(let type = 0; type < foodProducts[brand].types.length; type++){ // Loop through type of food in brands
                 let tr = document.createElement("tr");
-                let typeName = createElement("td", dogFoods[brand].types[type].type);
-                let product = dogFoods[brand].types[type];
-
+                let typeName = createElement("td", foodProducts[brand].types[type].type);
                 tr.appendChild(typeName); // Creates type of food row to table
                 
+                let product = foodProducts[brand].types[type];
                 for(let spec = 0; spec < product.volumes.length; spec ++){
                     let specName = product.volumes[spec].name,
                     specPrice = product.volumes[spec].price;
@@ -100,16 +43,17 @@ var products = (function(){
         output.appendChild(tablePara);
     }
 
-    // Creates a dom element and returns it
-    function createElement(element, text){
-        let domElement = document.createElement(element),
-        textNode = document.createTextNode(text);
-
-        domElement.appendChild(textNode);
-
-        return domElement;
+    function loadData(animal, outputId){
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", `${animal}Products.json`);
+        xhr.addEventListener("load", function() {
+            data = JSON.parse(this.responseText);
+            createTable(outputId, animal);
+        });
+        xhr.send();   
     }
+
     return {
-        createTable //: createTable
+        loadData
     }
 }());
